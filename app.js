@@ -7,6 +7,9 @@ const app = express();
 // Configure middleware -------------------------
 
 // Configure CRUDL endpoints --------------------
+app.get('/', (req,res) => {
+    res.send("Hello World");
+});
 
 // Start server ---------------------------------
 const PORT = process.env.PORT || 5000;
