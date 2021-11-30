@@ -5,7 +5,9 @@ import express from 'express';
 // Configure express app ------------------------
 const app = express();
 import { tableOfModules } from './data/tableOfModules.js';
+
 // Configure middleware -------------------------
+app.use(express.json());
 
 // Configure CRUDL endpoints --------------------
 // List all modules
@@ -21,9 +23,19 @@ app.get('/api/modules/:id', (req, res) => {
     // validate request
     // access data model
     const module = tableOfModules.find((module) => module.ModuleID === parseInt(req.params.id));
-    if (!module) res.status(404).json({ Message: `Record ${req.params.id} not found`});
+    if (!module) return res.status(404).json({ Message: `Record ${req.params.id} not found`});
     // response to request
     res.json(module);
+});
+
+// Create record
+app.post('/api/modules', (req, res) => {
+    // validate request
+    // access data model
+    const newModule = { ...req.body, "ModuleID": tableOfModules.length + 1 };
+    tableOfModules.push(newModule);
+    // response to request
+    res.json(newModule);
 });
 
 // Start server ---------------------------------
