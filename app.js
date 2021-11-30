@@ -1,14 +1,16 @@
 // Imports --------------------------------------
 import express from 'express';
 
+
 // Configure express app ------------------------
 const app = express();
-
+import { tableOfModules } from './data/tableOfModules.js';
 // Configure middleware -------------------------
 
 // Configure CRUDL endpoints --------------------
-app.get('/', (req,res) => {
-    res.send("Hello World");
+// List all modules
+app.get('/api/modules', (req, res) => {
+    res.json(tableOfModules);
 });
 
 // Start server ---------------------------------
