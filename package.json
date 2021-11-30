@@ -2,7 +2,8 @@
   "name": "teammates-be",
   "version": "1.0.0",
   "description": "Backend of my TeamMates web application",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon app.js"
   },
@@ -11,7 +12,7 @@
     "url": "git+https://github.com/pawandeepkk/teammates-be.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "pawandeepkk",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pawandeepkk/teammates-be/issues"
