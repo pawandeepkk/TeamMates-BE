@@ -53,6 +53,17 @@ app.put('/api/modules/:id', (req,res) => {
     res.json(module);
 });
 
+// Delete specific record
+app.delete('/api/modules/:id', (req,res) => {
+    // validate request
+    // access data model
+    const arrayIndex = tableOfModules.findIndex((module) => module.ModuleID === parseInt(req.params.id));
+    if (arrayIndex < 0) return res.status(404).json({ Message: `Record ${req.params.id} not found`});
+    tableOfModules.splice(arrayIndex,1);
+    // response to request
+    res.json({ Message: `Record ${req.params.id} deleted`});
+});
+
 // Start server ---------------------------------
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
