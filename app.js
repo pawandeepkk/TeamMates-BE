@@ -50,6 +50,7 @@ app.put('/api/modules/:id', (req,res) => {
     module.ModuleLeaderID   = req.body.ModuleLeaderID   || module.ModuleLeaderID;
     module.ModuleImage      = req.body.ModuleImage      || module.ModuleImage;
     // response to request
+    res.json(module);
 });
 
 // Start server ---------------------------------
