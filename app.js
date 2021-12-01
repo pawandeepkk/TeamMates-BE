@@ -38,6 +38,20 @@ app.post('/api/modules', (req, res) => {
     res.json(newModule);
 });
 
+// Update specific record
+app.put('/api/modules/:id', (req,res) => {
+    // validate request
+    // access data model
+    const module = tableOfModules.find((module) => module.ModuleID === parseInt(req.params.id));
+    if (!module) return res.status(404).json({ Message: `Record ${req.params.id} not found`});
+    module.ModuleName       = req.body.ModuleName       || module.ModuleName;
+    module.ModuleCode       = req.body.ModuleCode       || module.ModuleCode;
+    module.ModuleLevel      = req.body.ModuleLevel      || module.ModuleLevel;
+    module.ModuleLeaderID   = req.body.ModuleLeaderID   || module.ModuleLeaderID;
+    module.ModuleImage      = req.body.ModuleImage      || module.ModuleImage;
+    // response to request
+});
+
 // Start server ---------------------------------
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
