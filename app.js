@@ -98,7 +98,19 @@ app.get('/updatemodules/:moduleId', (req,res) => {
             console.log('error')
         }
         console.log(result);
-        res.send('Games Programming has been updated...');
+        res.send('Module has been updated...');
+    });
+ });
+
+ //delete module
+app.get('/deletemodules/:moduleId', (req,res) => {
+    let sql = `DELETE FROM modules WHERE moduleId = ${req.params.moduleId}`;
+    let query=db.query(sql,(err,result)=>{
+        if(err) {
+            console.log('error')
+        }
+        console.log(result);
+        res.send('Module has been deleted...');
     });
  });
 
