@@ -77,6 +77,21 @@ app.get('/getmodules', (req,res) => {
     });
  });
 
+  //select single module
+app.get('/getmodules/:moduleId', (req,res) => {
+    let sql = `SELECT * FROM modules WHERE moduleId = ${req.params.moduleId}`;
+    let query=db.query(sql, (err,result)=>{
+        if(err) {
+            console.log('error')
+        }
+        console.log(result);
+        res.send('Single module fetched...');
+    });
+ });
+
+
+
+
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
