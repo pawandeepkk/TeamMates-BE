@@ -89,7 +89,18 @@ app.get('/getmodules/:moduleId', (req,res) => {
     });
  });
 
-
+//update module
+app.get('/updatemodules/:moduleId', (req,res) => {
+    let newModuleName = "Programming (Games)";
+    let sql = `UPDATE modules SET moduleName= '${newModuleName}' WHERE moduleId = ${req.params.moduleId}`;
+    let query=db.query(sql,(err,result) => {
+        if(err) {
+            console.log('error')
+        }
+        console.log(result);
+        res.send('Games Programming has been updated...');
+    });
+ });
 
 
 // Start server
