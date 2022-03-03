@@ -2,6 +2,8 @@
 import express from 'express';
 import { createConnection } from 'mysql';
 
+import cors from 'cors'
+
 // create connection
 const db = createConnection({
     host      : 'localhost',
@@ -20,21 +22,7 @@ db.connect((err) => {
 
 // Configure express app 
 const app = express();
-
-
-/*
-//Create DB
-app.get('/createdb', (req, res) => {
-    let sql = 'CREATE DATABASE test';
-    db.query(sql, (err, result) => {
-        if(err) {
-            console.log('error')
-        }
-        console.log(result);
-        res.send('database created...');
-    });
-});
-*/
+app.use(cors());
 
 //create table 
 app.get('/createmoduletable', (req, res) => {
@@ -73,7 +61,7 @@ app.get('/getmodules', (req,res) => {
             console.log('error')
         }
         console.log(result);
-        res.send('Modules fetched...');
+        res.send(result);
     });
  });
 
